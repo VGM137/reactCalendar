@@ -1,0 +1,78 @@
+/* .daysNumber-container{
+  width: 100%;
+  height: auto;
+  margin: auto;
+  display: block;
+  position: relative;
+} */
+/*   .current-month{
+  background-color: rgb(103, 173, 219);
+} */
+/* .days-bar{
+  height: 80%;
+  display: grid;
+  grid-template-columns: repeat(7, 40px);
+  grid-template-rows: repeat(min(4), 40px);
+  margin: auto;
+} */
+.dayNumber-container{
+  height: 40px;
+  width: 40px;
+  
+}
+.dayNumber{
+  height: 100%;
+  width: 100%;
+  font-size: 1em;
+  text-align: center;
+  padding: initial;
+  margin: 0;
+  z-index: 1;
+  color: #454545;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+}
+.current-day{
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+.current-day p{
+  color: white;
+}
+
+.dayNumber-container{
+  height: 40px;
+  width: 40px;
+  
+}
+.dayNumber{
+  height: 100%;
+  width: 100%;
+  font-size: 1em;
+  text-align: center;
+  padding: initial;
+  margin: 0;
+  z-index: 1;
+  color: #454545;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  border-radius: 20px;
+}
+.current-day{
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+.current-day p{
+  color: white;
+}
+.first-round {
+  border-top-left-radius: 10px;
+}
+.last-round {
+  border-bottom-right-radius: 10px;
+}

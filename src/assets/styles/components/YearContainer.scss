@@ -1,0 +1,26 @@
+.year-container{
+  height: 100%;
+  width: fit-content;
+  margin: auto;
+  overflow: scroll;
+  display: grid;
+  grid-template-columns: repeat(max(366), 40px);
+  grid-auto-flow: row;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  background-color: #C8C6C6;
+  grid-template-areas:
+                       'ranges';
+}
+.Enero, .Marzo, .Mayo, .Julio, .Septiembre, .Noviembre{
+  background-color: rgba(100, 100, 100, 0.2);
+}
+@media screen and (max-width: 767px){
+  .year-container{
+    grid-template-columns: repeat(max(7), 40px);
+  }
+  .Enero, .Marzo, .Mayo, .Julio, .Septiembre, .Noviembre{
+    background-color: rgba(138, 138, 138, 0.2);
+  }
+}

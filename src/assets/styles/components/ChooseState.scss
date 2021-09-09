@@ -1,0 +1,58 @@
+.choose-state{
+  box-sizing: border-box;
+  height: auto;
+  width: 90%;
+  margin: 10px auto;
+  color: #e4e3de;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: 40% 25% 35%;
+  grid-template-areas: 'description description'
+                       'question question'
+                       'buttonA buttonB';
+}
+.question{
+  grid-area: question;
+  font-size: .9em;
+  height: auto;
+  text-align: center;
+}
+.question-description{
+  grid-area: description;
+  font-size: 1em;
+  height: auto;
+  margin: 5px;
+}
+.suspicious-state{
+  font-size: .8em;
+  width: 90%;
+  margin: auto;
+  padding: 8px;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  grid-area: buttonA;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #334756;
+  color: #e4e3de;
+  /* box-shadow: 0px 0px 0px 3px #010910; */
+}
+.tested-state{
+  font-size: .8em;
+  width: 90%;
+  margin: auto;
+  padding: 5px 8px;
+  box-sizing: border-box;
+  text-decoration: none;
+  border: none;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #334756;
+  color: #e4e3de;
+  /* box-shadow: 0px 0px 0px 3px #010910; */
+}
+.active-button{
+  background-color: #012b4b;;
+  box-shadow: 0px 0px 5px 0px #b1b1b1;
+}
