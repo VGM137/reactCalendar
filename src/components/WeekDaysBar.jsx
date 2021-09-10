@@ -43,16 +43,18 @@ const WeekDaysBar = (props) => {
   let key = 0
 
   return(
-    <div id='weekDays-bar' className='weekDays-bar'>
-      {weekDaysLetter.map(day => {
-          key+=1
-          return(
-            <div id='week-day' className='week-day' key={key}>
-              {day}
-            </div>
-            )}
-          )
-      }
+    <div id='weekDay-background' className='weekDay-background'>
+      <div id='weekDays-bar' className='weekDays-bar'>
+        {weekDaysLetter.map(day => {
+            key+=1
+            return(
+              <div id='week-day' className='week-day' key={key}>
+                {day}
+              </div>
+              )}
+            )
+        }
+      </div>
     </div>
   )
 }

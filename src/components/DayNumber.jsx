@@ -5,18 +5,17 @@ import { scrollingMonth } from "../actions";
 import '../assets/styles/components/DayNumber.scss'
 
 const DayNumber = ({number, month, lastDay, start}) => {
-/*   const { ref, inView, entry } = useInView({
-    threshold: 0,
-    
-  }); */
+
   const currentDate = useSelector(state => state.currentDate)
   const windowSize = useSelector(state => state.windowSize)
 
   const dispatch = useDispatch()
-/*   dispatch(scrollingMonth(entry)) */
   
   let currentMonth = currentDate.currentMonth
   let currentDay = currentDate.currentDay
+  if(currentDay < 10){
+    currentDay = currentDay.charAt(1)
+  }
   
   const isMobile = windowSize < 768
 
@@ -26,14 +25,9 @@ const DayNumber = ({number, month, lastDay, start}) => {
   const callbackFunction = entries => {
     const [entry] = entries
     if(entry.isIntersecting == true){
-      console.log(entry)
+      dispatch(scrollingMonth(entry.target.classList[1]))
+    }
 
-      console.log(entry.target.classList[1])
-    }/* else if(entry.isIntersecting == false){
-      console.log(entry.target.classList[1])
-
-    } */
-    /* console.log(entry) */
     setVisible(entry.isIntersecting)
   }
 
@@ -48,33 +42,22 @@ const DayNumber = ({number, month, lastDay, start}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, options)
     const currentTarget = targetRef.current
+    console.log(currentTarget.classList[1])
+    if(currentTarget.classList[1]==currentMonth && currentTarget.innerText == currentDay){
+      currentTarget.scrollIntoView({block: "center", behavior: "smooth"})
+      console.log('this is cb')
+      console.log(currentTarget)
+    }
     if(currentTarget) observer.observe(currentTarget)
-    console.log(isVisible)
 
     return () => {
       if(currentTarget) observer.unobserve(currentTarget)
     }
   }, [targetRef, options])
 
-/*   const ref = useRef();
-  const [inViewRef, inView] = useInView(); */
-
-/*   const setRefs = useCallback(
-    (node) => {
-      ref.current = node;
-      ;
-      dispatch(scrollingMonth(inViewRef(node)))
-      console.log(node)
-    },
-    [inViewRef],
-  ); */
-
-  /* console.log(number) */
-  
-/*   const handleRef = (node) => {
-
-    console.log(node.classList[1])
-  } */
+  const handleLoad = (number) => {
+    console.log(number)
+  }
   
 
   return(
@@ -82,7 +65,7 @@ const DayNumber = ({number, month, lastDay, start}) => {
       {isMobile 
         ?
           <div 
-            ref={number == 15 ? targetRef : null}
+            ref={ targetRef }
             id='dayNumber-container'
             className={`
               dayNumber-container
@@ -93,10 +76,12 @@ const DayNumber = ({number, month, lastDay, start}) => {
               ${month == currentMonth ? 'current-month' : ''}
               ${month == currentMonth && number == currentDay ? number : ''}
             `}
-            style={{gridColumn: `${start}/${start+1}`}}>
+            style={{gridColumn: `${start}/${start+1}`}}
+            
+            >
             <p 
               id='dayNumber' 
-              style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29'} : {}}
+              style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29', position:'relative'} : {}}
               className={`
                 dayNumber
                 ${month == currentMonth && number == currentDay ? 'current-day' : ''}
@@ -106,6 +91,7 @@ const DayNumber = ({number, month, lastDay, start}) => {
           </div>
         :
           <div 
+            ref={ targetRef }
             id='dayNumber-container'
             className={`
               dayNumber-container

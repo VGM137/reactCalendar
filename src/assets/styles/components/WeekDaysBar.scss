@@ -19,17 +19,29 @@
   }
 }
 @media screen and (max-width: 767px){
+  .weekDay-background{
+    width: 100%;
+    height: 40px;
+    background-color: #082032;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 2;
+  }
   .weekDays-bar{
-  height: 40px;
-  width: fit-content;
-  display: grid;
-  margin: auto;
-  grid-template-columns: repeat(7, 40px);
-  justify-content: space-evenly;
-  background-color: #e4e3de;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  /* padding-right: 4px; */
+    height: 40px;
+    width: fit-content;
+    display: grid;
+    margin: auto;
+    grid-template-columns: repeat(7, 40px);
+    justify-content: space-evenly;
+    background-color: #e4e3de;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    z-index: 2;
   }
   .week-day{
     display: flex;
