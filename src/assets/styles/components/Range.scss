@@ -1,0 +1,45 @@
+.ranges{
+  grid-area: ranges;
+  position: absolute;
+  display: none;
+  height: 40px;
+  width: auto;
+  grid-template-columns: repeat(28, 40px);
+  grid-template-rows: 40px;
+  grid-auto-rows: 40px;
+  z-index: 0;
+  /* grid-template-areas: 'asin symp detect reco conv'; */
+}
+.blue{
+  background-color: rgb(51, 71, 86);
+  position: relative;
+  z-index: 3;
+  color: white;
+  border-radius: 20px;
+}
+.r1, .r2, .r3, .r4, .r5{
+  background-color: rgba(255, 190, 15, .7);
+}
+.r6, .r7{
+  background-color: rgba(250, 30, 14, .7);
+}
+.r8, .r9, .r10, .r11, .r12, .r13, .r14, .r15, .r16, .r17, .r18, .r19, .r20, .r21{
+  background-color: rgba(189, 32, 0, .7);
+}
+.r22, .r23, .r24, .r25, .r26, .r27, .r28{
+  background-color: rgba(250, 30, 14, .7);
+}
+.r1{
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+}
+.r28{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+@media screen and (max-width: 767px){
+  .ranges{
+    grid-template-columns: repeat(7, 40px);
+    grid-auto-flow: row;
+  }
+}

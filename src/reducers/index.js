@@ -24,6 +24,11 @@ const reducer = (state, action) => {
         ...state,
         scrollingMonth: action.payload
       }
+    case "DISPLAY_RANGE":
+      return {
+        ...state,
+        rangeParameters: action.payload
+      }
 
     default :
     return state;

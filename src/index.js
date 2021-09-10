@@ -12,7 +12,14 @@ const initialState = {
   weekDays: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
   currentDate: '',
   state: false,
-  scrollingMonth: ''
+  scrollingMonth: '',
+  rangeParameters: {
+    top: '',
+    start: '',
+    end: '',
+    position: '',
+    display: ''
+  }
 }
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()

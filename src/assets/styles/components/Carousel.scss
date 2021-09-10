@@ -9,14 +9,24 @@
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
 }
+.carousel::-webkit-scrollbar{
+  height: 8px;
+  width: 0;
+}
+.carousel::-webkit-scrollbar-track{
+  background: rgba(211, 211, 211, .6);
+  border-radius: 4px;
+}
+.carousel::-webkit-scrollbar-thumb{
+  background: rgba(99, 99, 99, 0.8);
+  border-radius: 5px;
+}
 
 @media screen and (max-width: 767px){
 .carousel{
   display: block;
   height: auto;
-  max-height: 250px;
+  max-height: 240px;
   margin: auto;
   width: 90%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
 }}

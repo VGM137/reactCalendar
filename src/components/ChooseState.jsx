@@ -23,7 +23,7 @@ const ChooseState = (props) => {
       <h3 id='question' className='question'>Selecciona una de la siguientes opciones</h3>
       <button 
         id='suspicious-state'
-        className='suspicious-state'
+        className='suspicious-state active-button'
         onClick={(e) => handleState(e)}
         >Sospecho que tengo COVID-19</button>
       <button 

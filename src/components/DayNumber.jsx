@@ -1,13 +1,14 @@
-import React, {useRef, useCallback, useState, useMemo, useEffect} from "react";
+import React, {useRef, useState, useMemo, useEffect} from "react";
 import { connect, useSelector, useDispatch } from "react-redux";
-import { useInView } from "react-intersection-observer";
 import { scrollingMonth } from "../actions";
+import { displayRange } from "../actions";
 import '../assets/styles/components/DayNumber.scss'
 
 const DayNumber = ({number, month, lastDay, start}) => {
 
   const currentDate = useSelector(state => state.currentDate)
   const windowSize = useSelector(state => state.windowSize)
+  const state = useSelector(state => state.state)
 
   const dispatch = useDispatch()
   
@@ -42,11 +43,8 @@ const DayNumber = ({number, month, lastDay, start}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, options)
     const currentTarget = targetRef.current
-    console.log(currentTarget.classList[1])
     if(currentTarget.classList[1]==currentMonth && currentTarget.innerText == currentDay){
       currentTarget.scrollIntoView({block: "center", behavior: "smooth"})
-      console.log('this is cb')
-      console.log(currentTarget)
     }
     if(currentTarget) observer.observe(currentTarget)
 
@@ -55,10 +53,38 @@ const DayNumber = ({number, month, lastDay, start}) => {
     }
   }, [targetRef, options])
 
-  const handleLoad = (number) => {
-    console.log(number)
+  const handleTestedClick = (e) =>{
+    let yearContainer = document.getElementById('year-container')
+    yearContainer.childNodes.forEach(child => child.childNodes[0].classList.remove('blue'))
+    e.target.classList.add('blue')
+    console.log('Tested')
+    console.log(e)
+    let top = e.target.offsetParent.offsetTop
+    let left = e.target.offsetParent.offsetLeft/40
+    dispatch(displayRange({
+      top: left == 6 ? `${top}px` : `${top-40}px`,
+      start: left == 6 ? 1 : left+2,
+      end: left == 6 ? 2 : left+3,
+      position: 'absolute',
+      display: 'grid'
+    }))
   }
-  
+  const handleSuspiciousClick = (e) =>{
+    let yearContainer = document.getElementById('year-container')
+    yearContainer.childNodes.forEach(child => child.childNodes[0].classList.remove('blue'))
+    e.target.classList.add('blue')
+    console.log('Suspicious')
+    console.log(e)
+    let top = e.target.offsetParent.offsetTop
+    let left = e.target.offsetParent.offsetLeft/40
+    dispatch(displayRange({
+      top: `${top}px`,
+      start: left+1,
+      end: left+2,
+      position: 'absolute',
+      display: 'grid'
+    }))
+  }
 
   return(
     <>
@@ -77,8 +103,8 @@ const DayNumber = ({number, month, lastDay, start}) => {
               ${month == currentMonth && number == currentDay ? number : ''}
             `}
             style={{gridColumn: `${start}/${start+1}`}}
-            
-            >
+            onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)}
+          >
             <p 
               id='dayNumber' 
               style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29', position:'relative'} : {}}
@@ -102,7 +128,8 @@ const DayNumber = ({number, month, lastDay, start}) => {
               ${month == currentMonth ? 'current-month' : ''}
               ${month == currentMonth && number == currentDay ? number : ''}
             `}
-            >
+            onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)}
+          >
             <p 
             id='dayNumber' 
             style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29'} : {}}

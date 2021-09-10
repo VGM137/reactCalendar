@@ -33,11 +33,9 @@ const WeekDaysBar = (props) => {
         allWeekDays.splice(lastDay, (allWeekDays.length-lastDay))
       }
       allWeekDays.map(day => weekDaysLetter.push(day.charAt(0)))
-      console.log(weekDaysLetter)
     })
   }else{
     weekDaysLetter = props.weekDays.map(day => day.charAt(0))
-    console.log(weekDaysLetter)
   }
 
   let key = 0

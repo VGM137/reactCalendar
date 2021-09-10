@@ -14,4 +14,8 @@ export const scrollingMonth = (payload) => ({
   type: "SCROLLING_MONTH",
   payload 
  });
+export const displayRange = (payload) => ({
+  type: "DISPLAY_RANGE",
+  payload 
+ });
  
