@@ -20,7 +20,7 @@ const Header = (props) => {
   let year = splitDate[3]
 
   let currentDate = {
-    string:`${currentWeekDay} ${numberDay.charAt(1) == 1 ? numberDay.charAt()+'ro' : numberDay} de ${currentMonth.slice(0, 3)} ${year}`,
+    string:`${currentWeekDay} ${numberDay < 10 ? numberDay.charAt(1) == 1 ? numberDay.charAt(1)+'ro' : numberDay : numberDay} de ${currentMonth.slice(0, 3)} ${year}`,
     monthIndex: month,
     currentYear: year,
     currentMonth: currentMonth,

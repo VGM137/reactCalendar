@@ -17,6 +17,7 @@ const initialState = {
     top: '',
     start: '',
     end: '',
+    left:'',
     position: '',
     display: ''
   }

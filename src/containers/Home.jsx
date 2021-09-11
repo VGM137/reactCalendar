@@ -11,13 +11,15 @@ import '../assets/styles/components/Home.scss'
 
 const Home = (props) => {
 
-  props.windowSize(window.outerWidth)
+  props.windowSize(window.innerWidth)
 
-  window.addEventListener('resize', () => props.windowSize(window.outerWidth))
+  window.addEventListener('resize', () => props.windowSize(window.innerWidth))
+  console.log(window)
+  console.log(window.innerWidth)
 
   return (
     <>
-    <section id='calendar' className='calendar'> 
+    <section id='calendar' className='calendar'>
       <Header/>
       <Graphic/>
       <ChooseState/>

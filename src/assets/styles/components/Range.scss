@@ -6,9 +6,11 @@
   width: auto;
   grid-template-columns: repeat(28, 40px);
   grid-template-rows: 40px;
-  grid-auto-rows: 40px;
   z-index: 0;
   /* grid-template-areas: 'asin symp detect reco conv'; */
+}
+.range{
+  cursor: default;
 }
 .blue{
   background-color: rgb(51, 71, 86);
@@ -41,5 +43,6 @@
   .ranges{
     grid-template-columns: repeat(7, 40px);
     grid-auto-flow: row;
+    grid-auto-rows: 40px;
   }
 }

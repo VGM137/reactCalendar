@@ -11,13 +11,13 @@ const DayNumber = ({number, month, lastDay, start}) => {
   const state = useSelector(state => state.state)
 
   const dispatch = useDispatch()
-  
+
   let currentMonth = currentDate.currentMonth
   let currentDay = currentDate.currentDay
   if(currentDay < 10){
     currentDay = currentDay.charAt(1)
   }
-  
+
   const isMobile = windowSize < 768
 
   const targetRef = useRef(null)
@@ -59,15 +59,29 @@ const DayNumber = ({number, month, lastDay, start}) => {
     e.target.classList.add('blue')
     console.log('Tested')
     console.log(e)
-    let top = e.target.offsetParent.offsetTop
     let left = e.target.offsetParent.offsetLeft/40
-    dispatch(displayRange({
-      top: left == 6 ? `${top}px` : `${top-40}px`,
-      start: left == 6 ? 1 : left+2,
-      end: left == 6 ? 2 : left+3,
-      position: 'absolute',
-      display: 'grid'
-    }))
+    console.log(left*40)
+    if(isMobile){
+      let top = e.target.offsetParent.offsetTop
+      console.log(top)
+      dispatch(displayRange({
+        top: left == 6 ? `${top}px` : `${top-40}px`,
+        start: left == 6 ? 1 : left+2,
+        end: left == 6 ? 2 : left+3,
+        position: 'absolute',
+        display: 'grid'
+      }))
+    }else if(!isMobile){
+      console.log('Is not mobile')
+      dispatch(displayRange({
+        start: left-6,
+        end: left-5,
+        left: `${(left*40)-240}px`,
+        position: 'absolute',
+        display: 'grid'
+      }))
+    }
+
   }
   const handleSuspiciousClick = (e) =>{
     let yearContainer = document.getElementById('year-container')
@@ -77,20 +91,31 @@ const DayNumber = ({number, month, lastDay, start}) => {
     console.log(e)
     let top = e.target.offsetParent.offsetTop
     let left = e.target.offsetParent.offsetLeft/40
-    dispatch(displayRange({
-      top: `${top}px`,
-      start: left+1,
-      end: left+2,
-      position: 'absolute',
-      display: 'grid'
-    }))
+    if(isMobile){
+      dispatch(displayRange({
+        top: `${top}px`,
+        start: left+1,
+        end: left+2,
+        position: 'absolute',
+        display: 'grid'
+      }))
+    }else if(!isMobile){
+      console.log('Is not mobile')
+      dispatch(displayRange({
+        start: left-6,
+        end: left-5,
+        left: `${(left*40)}px`,
+        position: 'absolute',
+        display: 'grid'
+      }))
+    }
   }
 
   return(
     <>
-      {isMobile 
+      {isMobile
         ?
-          <div 
+          <div
             ref={ targetRef }
             id='dayNumber-container'
             className={`
@@ -103,20 +128,20 @@ const DayNumber = ({number, month, lastDay, start}) => {
               ${month == currentMonth && number == currentDay ? number : ''}
             `}
             style={{gridColumn: `${start}/${start+1}`}}
-            onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)}
           >
-            <p 
-              id='dayNumber' 
+            <p
+              id='dayNumber'
               style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29', position:'relative'} : {}}
               className={`
                 dayNumber
                 ${month == currentMonth && number == currentDay ? 'current-day' : ''}
-              `} >
+              `}
+              onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)}>
                 {number}
             </p>
           </div>
         :
-          <div 
+          <div
             ref={ targetRef }
             id='dayNumber-container'
             className={`
@@ -128,15 +153,15 @@ const DayNumber = ({number, month, lastDay, start}) => {
               ${month == currentMonth ? 'current-month' : ''}
               ${month == currentMonth && number == currentDay ? number : ''}
             `}
-            onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)}
           >
-            <p 
-            id='dayNumber' 
+            <p
+            id='dayNumber'
             style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29'} : {}}
             className={`
               dayNumber
               ${month == currentMonth && number == currentDay ? 'current-day' : ''}
-            `} >
+            `}
+            onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)} >
               {number}
             </p>
           </div>
