@@ -4,7 +4,7 @@
   width: fit-content;
   display: grid;
   margin: auto;
-  grid-template-columns: repeat(max(366), 40px);
+  grid-template-columns: repeat(4745, 40px);
   justify-content: space-evenly;
   background-color: #e4e3de;
   border-top-left-radius: 10px;
@@ -16,6 +16,11 @@
     width: 40px;
     justify-content: center;
     align-items: center;
+  }
+  .weekDay-background{
+    width: 200000px;
+    display: flex;
+    height: 40px;
   }
 }
 @media screen and (max-width: 767px){

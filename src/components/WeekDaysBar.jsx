@@ -7,33 +7,42 @@ const WeekDaysBar = (props) => {
   let isMobile = props.windowSize < 768 
   let isDesk = props.windowSize >= 768 
   let weekDaysLetter = []
+  let twelveYearCalendar = []
   let lastDay;
 
   if(isDesk){
-    props.months.forEach(month => {
-
-      let newDate = new Date(props.currentDate.currentYear, props.months.indexOf(month), 1)
-      let firstWeekDay = new Date(props.currentDate.currentYear, props.months.indexOf(month), 1).getDay()
+    const yearsArray = []
+    for(let i = 2018; i <= 2030; i++){
+      yearsArray.push(i)
+    }
+    console.log(yearsArray)
+    yearsArray.forEach(year => {
+      props.months.forEach(month => {
       
-      lastDay = new Date(newDate.getFullYear(), newDate.getMonth() +1, 0).getDate();
-      
-      let allWeekDays = []
-      if(firstWeekDay != 0){
-        let mapWeekDays = props.weekDays.slice(firstWeekDay, props.weekDays.length)
-        mapWeekDays.forEach(day => allWeekDays.push(day))
-        do{
-          props.weekDays.forEach(day => allWeekDays.push(day))
-        }while(allWeekDays.length <= lastDay)
-      }else{
-        do{
-          props.weekDays.forEach(day => allWeekDays.push(day))
-        }while(allWeekDays.length <= lastDay)
-      }
-      if(allWeekDays.length > lastDay){
-        allWeekDays.splice(lastDay, (allWeekDays.length-lastDay))
-      }
-      allWeekDays.map(day => weekDaysLetter.push(day.charAt(0)))
-    })
+        let newDate = new Date(year, props.months.indexOf(month), 1)
+        let firstWeekDay = new Date(year, props.months.indexOf(month), 1).getDay()
+        
+        lastDay = new Date(newDate.getFullYear(), newDate.getMonth() +1, 0).getDate();
+        
+        let allWeekDays = []
+        if(firstWeekDay != 0){
+          let mapWeekDays = props.weekDays.slice(firstWeekDay, props.weekDays.length)
+          mapWeekDays.forEach(day => allWeekDays.push(day))
+          do{
+            props.weekDays.forEach(day => allWeekDays.push(day))
+          }while(allWeekDays.length <= lastDay)
+        }else{
+          do{
+            props.weekDays.forEach(day => allWeekDays.push(day))
+          }while(allWeekDays.length <= lastDay)
+        }
+        if(allWeekDays.length > lastDay){
+          allWeekDays.splice(lastDay, (allWeekDays.length-lastDay))
+        }
+        allWeekDays.map(day => twelveYearCalendar.push(day.charAt(0)))
+      })
+      console.log(twelveYearCalendar)
+  })
   }else{
     weekDaysLetter = props.weekDays.map(day => day.charAt(0))
   }
@@ -43,15 +52,26 @@ const WeekDaysBar = (props) => {
   return(
     <div id='weekDay-background' className='weekDay-background'>
       <div id='weekDays-bar' className='weekDays-bar'>
-        {weekDaysLetter.map(day => {
-            key+=1
-            return(
-              <div id='week-day' className='week-day' key={key}>
-                {day}
-              </div>
-              )}
-            )
-        }
+        {isMobile 
+          ?
+            weekDaysLetter.map(day => {
+              key+=1
+              return(
+                <div id='week-day' className='week-day' key={key}>
+                  {day}
+                </div>
+              )
+            })
+          :
+            twelveYearCalendar.map(day => {
+              key+=1
+              return(
+                <div id='week-day' className='week-day' key={key}>
+                  {day}
+                </div>
+              )
+            })
+        } 
       </div>
     </div>
   )
