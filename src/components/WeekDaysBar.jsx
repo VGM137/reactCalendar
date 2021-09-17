@@ -6,15 +6,16 @@ const WeekDaysBar = (props) => {
 
   let isMobile = props.windowSize < 768 
   let isDesk = props.windowSize >= 768 
+  const year = props.currentDate.currentYear
+  const parsedYear = parseInt(year)
+  console.log(parseInt(year))
+  console.log(typeof(parsedYear))
   let weekDaysLetter = []
   let twelveYearCalendar = []
   let lastDay;
 
   if(isDesk){
-    const yearsArray = []
-    for(let i = 2018; i <= 2030; i++){
-      yearsArray.push(i)
-    }
+    const yearsArray = [parsedYear-1, parsedYear, parsedYear+1]
     console.log(yearsArray)
     yearsArray.forEach(year => {
       props.months.forEach(month => {

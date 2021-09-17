@@ -3,8 +3,8 @@
   width: fit-content;
   margin: auto;
   overflow: scroll;
-  display: grid;
-  grid-template-columns: repeat(max(366), 40px);
+  display: flex;
+  /* grid-template-columns: repeat(max(366), 40px); */
   grid-auto-flow: row;
   justify-content: center;
   position: relative;
@@ -21,6 +21,7 @@
 }
 @media screen and (max-width: 767px){
   .year-container{
+    display: grid;
     grid-template-columns: repeat(max(7), 40px);
   }
   .Enero, .Marzo, .Mayo, .Julio, .Septiembre, .Noviembre{

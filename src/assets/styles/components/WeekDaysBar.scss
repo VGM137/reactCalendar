@@ -1,14 +1,14 @@
 @media screen and (min-width: 768px){
   .weekDays-bar{
-  height: 40px;
-  width: fit-content;
-  display: grid;
-  margin: auto;
-  grid-template-columns: repeat(4745, 40px);
-  justify-content: space-evenly;
-  background-color: #e4e3de;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+    background-color: #e4e3de;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: flex;
+    /* grid-template-columns: repeat(1095,40px); */
+    height: 40px;
+    justify-content: space-evenly;
+    margin: auto;
+    width: fit-content;
   }
   .week-day{
     display: flex;
@@ -18,7 +18,7 @@
     align-items: center;
   }
   .weekDay-background{
-    width: 200000px;
+    width: auto;
     display: flex;
     height: 40px;
   }

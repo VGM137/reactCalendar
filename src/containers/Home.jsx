@@ -6,6 +6,8 @@ import Graphic from '../components/Graphic';
 import ChooseState from '../components/ChooseState';
 import Carousel from '../components/Carousel';
 import DisplayMonth from '../components/DisplayMonth';
+import LearnMore from '../components/LearnMore';
+import Footer from '../components/Footer';
 import '../assets/styles/components/Home.scss'
 
 
@@ -13,9 +15,14 @@ const Home = (props) => {
 
   props.windowSize(window.innerWidth)
 
-  window.addEventListener('resize', () => props.windowSize(window.innerWidth))
+  window.addEventListener('resize', () => {
+/*     let currentDay = document.getElementsByClassName('current-day')
+    currentDay.scrollIntoView({block: "center", behavior: "smooth"}) */
+    props.windowSize(window.innerWidth)
+  })
   console.log(window)
-  console.log(window.innerWidth)
+  /* 
+  console.log(window.innerWidth) */
 
   return (
     <>
@@ -25,6 +32,8 @@ const Home = (props) => {
       <ChooseState/>
       <Carousel/>
       <DisplayMonth/>
+      <LearnMore/>
+      <Footer/>
     </section>
     </>
   )

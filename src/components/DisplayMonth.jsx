@@ -3,10 +3,11 @@ import { connect } from "react-redux";
 import '../assets/styles/components/DisplayMonth.scss'
 
 const DisplayMonth = (props) => {
+  let year = props.scrollingMonth.year
   return(
     <div id='display-month' className='display-month'>
       <h2 id='month-text' className='month-text'>
-        {props.scrollingMonth}
+        {`${props.scrollingMonth.month} ${year}`}
       </h2>
     </div>
   )

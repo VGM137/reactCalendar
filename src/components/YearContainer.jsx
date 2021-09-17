@@ -9,36 +9,43 @@ const YearContainer = (props) => {
   let spanishMonths = props.months
 
   let year = props.currentDate.currentYear
+  const parsedYear = parseInt(year)
   let weekDays = props.weekDays
   
   let arrayOfDays = []
 
   let firstWeekDay = new Date(year, 0, 1).getDay();
 
-  spanishMonths.forEach(month => {    
-    let newDate = new Date(year, spanishMonths.indexOf(month), 1)
-    let lastDay = new Date(newDate.getFullYear(), newDate.getMonth() +1, 0).getDate();
+  const yearsArray = [parsedYear-1, parsedYear, parsedYear+1]
+  console.log(yearsArray)
+  yearsArray.forEach(year => {
+    spanishMonths.forEach(month => {    
+      let newDate = new Date(year, spanishMonths.indexOf(month), 1)
+      let lastDay = new Date(newDate.getFullYear(), newDate.getMonth() +1, 0).getDate();
 
-    for(let i = 1; i <= lastDay; i++){
-      if(i == 1 && month == 'Enero'){
-        let day = {
-          number: i,
-          month: month,
-          lastDay: lastDay,
-          start: firstWeekDay
-        } 
-        arrayOfDays.push(day)
-      }else{
-        let day = {
-          number: i,
-          month: month,
-          lastDay: lastDay,
-          start: ''
+      for(let i = 1; i <= lastDay; i++){
+        if(i == 1 && month == 'Enero'){
+          let day = {
+            number: i,
+            month: month,
+            year: year,
+            lastDay: lastDay,
+            start: firstWeekDay
+          } 
+          arrayOfDays.push(day)
+        }else{
+          let day = {
+            number: i,
+            month: month,
+            year: year,
+            lastDay: lastDay,
+            start: ''
+          }
+          arrayOfDays.push(day)
         }
-        arrayOfDays.push(day)
       }
-    }
-  })
+    })
+  }) 
   
   let key = 0
 
@@ -52,6 +59,7 @@ const YearContainer = (props) => {
           <DayNumber 
             number={day.number} 
             month={day.month} 
+            year={day.year} 
             lastDay={day.lastDay} 
             key={key}
             start={day.start}

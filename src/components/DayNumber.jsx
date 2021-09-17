@@ -4,7 +4,7 @@ import { scrollingMonth } from "../actions";
 import { displayRange } from "../actions";
 import '../assets/styles/components/DayNumber.scss'
 
-const DayNumber = ({number, month, lastDay, start}) => {
+const DayNumber = ({number, month, year, lastDay, start}) => {
 
   const currentDate = useSelector(state => state.currentDate)
   const windowSize = useSelector(state => state.windowSize)
@@ -14,6 +14,7 @@ const DayNumber = ({number, month, lastDay, start}) => {
 
   let currentMonth = currentDate.currentMonth
   let currentDay = currentDate.currentDay
+  let currentYear = currentDate.currentYear
   if(currentDay < 10){
     currentDay = currentDay.charAt(1)
   }
@@ -26,7 +27,7 @@ const DayNumber = ({number, month, lastDay, start}) => {
   const callbackFunction = entries => {
     const [entry] = entries
     if(entry.isIntersecting == true){
-      dispatch(scrollingMonth(entry.target.classList[1]))
+      dispatch(scrollingMonth({month:entry.target.classList[1], year: entry.target.classList[3]}))
     }
 
     setVisible(entry.isIntersecting)
@@ -43,9 +44,10 @@ const DayNumber = ({number, month, lastDay, start}) => {
   useEffect(() => {
     const observer = new IntersectionObserver(callbackFunction, options)
     const currentTarget = targetRef.current
-    if(currentTarget.classList[1]==currentMonth && currentTarget.innerText == currentDay){
+    if(currentTarget.classList[1]==currentMonth && currentTarget.classList[3]==currentYear && currentTarget.innerText == currentDay){
       currentTarget.scrollIntoView({block: "center", behavior: "smooth"})
     }
+      
     if(currentTarget) observer.observe(currentTarget)
 
     return () => {
@@ -122,19 +124,20 @@ const DayNumber = ({number, month, lastDay, start}) => {
               dayNumber-container
               ${month}
               s${number}
+              ${year}
               ${number == 1 ? 'first-round' : ''}
               ${number == lastDay ? 'last-round' : ''}
-              ${month == currentMonth ? 'current-month' : ''}
-              ${month == currentMonth && number == currentDay ? number : ''}
+              ${month == currentMonth && year == currentYear ? 'current-month' : ''}
+              ${month == currentMonth && number && year == currentYear == currentDay ? number : ''}
             `}
             style={{gridColumn: `${start}/${start+1}`}}
           >
             <p
               id='dayNumber'
-              style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29', position:'relative'} : {}}
+              style={month == currentMonth && number == currentDay && year == currentYear ? {backgroundColor: '#FF4C29', position:'relative'} : {}}
               className={`
                 dayNumber
-                ${month == currentMonth && number == currentDay ? 'current-day' : ''}
+                ${month == currentMonth && number == currentDay && year == currentYear ? 'current-day' : ''}
               `}
               onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)}>
                 {number}
@@ -148,18 +151,19 @@ const DayNumber = ({number, month, lastDay, start}) => {
               dayNumber-container
               ${month}
               s${number}
+              ${year}
               ${number == 1 ? 'first-round' : ''}
               ${number == lastDay ? 'last-round' : ''}
-              ${month == currentMonth ? 'current-month' : ''}
-              ${month == currentMonth && number == currentDay ? number : ''}
+              ${month == currentMonth && year == currentYear ? 'current-month' : ''}
+              ${month == currentMonth && number && year == currentYear == currentDay ? number : ''}
             `}
           >
             <p
             id='dayNumber'
-            style={month == currentMonth && number == currentDay ? {backgroundColor: '#FF4C29'} : {}}
+            style={month == currentMonth && number == currentDay && year == currentYear ? {backgroundColor: '#FF4C29'} : {}}
             className={`
               dayNumber
-              ${month == currentMonth && number == currentDay ? 'current-day' : ''}
+              ${month == currentMonth && number == currentDay && year == currentYear ? 'current-day' : ''}
             `}
             onClick={state ? (e) => handleTestedClick(e) : (e) => handleSuspiciousClick(e)} >
               {number}
