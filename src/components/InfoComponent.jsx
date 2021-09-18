@@ -24,8 +24,10 @@ const infoComponent = ({title, text, link}) => {
   }
 
   const handleSeeLess = (e) => {
-    let infoText = document.getElementById('info-text')
-    let infoSeeMore = document.getElementById('info-seeMore')
+    let target = e.target
+    console.log(e)
+    let infoText = target.parentElement
+    let infoSeeMore = target.parentElement.parentElement.children[1]
     infoText.style.maxHeight = '100px'
     infoSeeMore.style.display = 'flex'
   }

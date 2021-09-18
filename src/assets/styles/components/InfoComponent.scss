@@ -1,9 +1,11 @@
 .info-wrap{
+  border-radius: 20px;
   height: auto;
-  width: 100%;
-  margin: 10px auto 40px auto;
-  border-bottom-left-radius: 20px;
-  border-top-left-radius: 20px;
+  margin: 10px auto 40px;
+  width: 90%;
+  background-color: #2f3e49;
+  box-sizing: border-box;
+  padding: 5px 0;
 }
 .info-content{
   position: relative;
@@ -11,6 +13,7 @@
   width: 70%;
   box-sizing: border-box;
   margin: 0 auto;
+
 }
 .info-title{
   font-size: 1.1em;
@@ -22,13 +25,12 @@
 .info-text{
   font-size: .9em;
   color: #e4e3de;
-  border-radius: 10px;
+
   width: 100%;
   margin: 15px auto;
   font-weight: 500;
   padding: 10px;
   padding-left: 20px;
-  background-color: #2f3e49;
   box-sizing: border-box;
 }
 .info-wrap a{
@@ -40,35 +42,40 @@
   display: flex;
   font-size: .9em;
   font-weight: 500;
+
 }
 
 @media screen and (max-width: 767px){
+  .info-wrap{
+    background-color: #2f3e49;
+  }
   .info-content{
-    width: 90%;
+    width: 100%;
   }
   .info-title{
     width: 90%;
-    margin-left: 40px;
-  }
-  .info-text{
-    width: 90%;
+    margin: 10px auto;
+    box-sizing: border-box;
+    padding-left: 10px;
   }
   .info-wrap a{
     width: 90%;
-    margin-left: 40px;
+    margin: 10px auto;
+    box-sizing: border-box;
+    padding-left: 10px;
+    background-color: #2f3e49;
   }
   .info-text{
     font-size: .9em;
     color: #e4e3de;
     max-height: 100px;
     overflow: hidden;
-    border-radius: 10px;
     width: 100%;
     margin: 15px auto;
     font-weight: 500;
     padding: 10px;
     padding-left: 20px;
-    background-color: #2f3e496b;
+
     box-sizing: border-box;
   }
   .info-seeMore{
@@ -80,7 +87,7 @@
     z-index: 1;
     background: rgb(0,0,0);
     background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(21,21,21,0.8) 100%);
-    border-radius: 10px;
+
     margin: 0 auto;
   }
   .info-seeMore-text{
