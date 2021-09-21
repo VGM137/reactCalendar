@@ -4,6 +4,8 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   display: flex;
+  position: relative;
+ /*  grid-template-columns: 20% 80%; */
   background-color: #334756;
   color: #e4e3de;
 }
@@ -14,4 +16,32 @@
   align-items: center;
   width: 100%;
   margin: 0 auto;
+}
+.goToday{
+  box-sizing: border-box;
+  background-color: #082032;
+  border: none;
+  border-radius: 20px;
+  color: #e4e3de;
+  font-size: .8em;
+  height: 40px;
+  padding: 5px;
+  text-decoration: none;
+  width: 40px;
+  position: absolute;
+  left: 150px;
+  top: 5px;
+}
+.active-button{
+  background-color: #012b4b;;
+  box-shadow: 0px 0px 5px 0px #b1b1b1;
+}
+@media screen and (max-width: 767px){
+  .month-text{
+    width: 90%;
+  }
+  .goToday{
+    width: 40px;
+    left: 10px;
+  }
 }

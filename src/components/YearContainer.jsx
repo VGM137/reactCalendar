@@ -14,14 +14,15 @@ const YearContainer = (props) => {
   
   let arrayOfDays = []
 
-  let firstWeekDay = new Date(year, 0, 1).getDay();
-
+  
   const yearsArray = [parsedYear-1, parsedYear, parsedYear+1]
   console.log(yearsArray)
   yearsArray.forEach(year => {
     spanishMonths.forEach(month => {    
+      let firstWeekDay = new Date(year, 0, 1).getDay();
       let newDate = new Date(year, spanishMonths.indexOf(month), 1)
       let lastDay = new Date(newDate.getFullYear(), newDate.getMonth() +1, 0).getDate();
+      console.log(firstWeekDay)
 
       for(let i = 1; i <= lastDay; i++){
         if(i == 1 && month == 'Enero'){
@@ -30,7 +31,7 @@ const YearContainer = (props) => {
             month: month,
             year: year,
             lastDay: lastDay,
-            start: firstWeekDay
+            start: firstWeekDay+1
           } 
           arrayOfDays.push(day)
         }else{
